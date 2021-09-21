@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Александр Кучер](https://up.htmlacademy.ru/javascript/24/user/1744861).
-* Наставник: `Неизвестно`.
+- Студент: [Александр Кучер](https://up.htmlacademy.ru/javascript/24/user/1744861).
+- Наставник: [Евгений Фаллер](https://htmlacademy.ru/profile/id505933)}.
 
 ---
 

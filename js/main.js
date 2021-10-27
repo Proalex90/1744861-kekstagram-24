@@ -1,12 +1,13 @@
 import { getComments, getRandomInt } from './util.js';
 import { numberComments } from './data.js';
+import { getPreviewPhoto } from './preview.js';
 
 
 //Основная функция получения описания к фото
 const createDescription = (i) => {
   i++;
   return {
-    idDescription: i,
+    id: i,
     url: `photos/${i}.jpg`,
     description: 'Какое-то описание',
     likes: getRandomInt(15, 200),
@@ -14,6 +15,7 @@ const createDescription = (i) => {
   };
 };
 
-const arrayObject = Array.from({ length: 25 }, (item, i) => createDescription(i));
+const arrayObjects = Array.from({ length: 25 }, (item, i) => createDescription(i));
 
-arrayObject;
+getPreviewPhoto();
+export { arrayObjects };

@@ -1,6 +1,7 @@
-import { getComments, getRandomInt } from './util.js';
+import { getComments, getRandomInt } from './utils.js';
 import { numberComments } from './data.js';
 import { getPreviewPhoto } from './preview.js';
+import { onPictureClick } from './fullscreen.js';
 
 
 //Основная функция получения описания к фото
@@ -18,4 +19,5 @@ const createDescription = (i) => {
 const arrayObjects = Array.from({ length: 25 }, (item, i) => createDescription(i));
 
 getPreviewPhoto();
+onPictureClick(arrayObjects);
 export { arrayObjects };

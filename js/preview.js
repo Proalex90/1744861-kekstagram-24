@@ -8,6 +8,7 @@ const getPreviewPhoto = function () {
 
   arrayObjects.forEach((element) => {
     const cloneElement = template.cloneNode(true);
+    cloneElement.setAttribute('data-id', element.id);
     cloneElement.querySelector('.picture__img').src = element.url;
     cloneElement.querySelector('.picture__likes').textContent = element.likes;
     cloneElement.querySelector('.picture__comments').textContent = element.comments.length;

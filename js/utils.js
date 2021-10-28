@@ -41,5 +41,10 @@ const getComments = (j) => {
   };
 };
 
+//Нажатие ESC
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export { getComments, checkingStringLength, getRandomArrayElement, getRandomInt };
+//Нажатие Enter
+const isEnterKey = (evt) => evt.key === 'Enter';
+
+export { getComments, checkingStringLength, getRandomArrayElement, getRandomInt, isEscapeKey, isEnterKey };

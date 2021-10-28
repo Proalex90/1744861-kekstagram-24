@@ -1,4 +1,4 @@
-import { isEscapeKey } from './util.js';
+import { isEscapeKey } from './utils.js';
 
 const fullscreenPanel = document.querySelector('.big-picture');
 const body = document.querySelector('body');

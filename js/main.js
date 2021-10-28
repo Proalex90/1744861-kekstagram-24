@@ -1,4 +1,4 @@
-import { getComments, getRandomInt } from './util.js';
+import { getComments, getRandomInt } from './utils.js';
 import { numberComments } from './data.js';
 import { getPreviewPhoto } from './preview.js';
 import { onPictureClick } from './fullscreen.js';

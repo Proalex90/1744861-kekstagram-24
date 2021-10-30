@@ -682,6 +682,13 @@ main {
 
   border-radius: 5px;
 }
+.text__description:invalid,
+.text__hashtags:invalid{
+  box-shadow: 0px 0px 4px 3px tomato;
+  outline-color: tomato;
+  color:tomato;
+  border-color: tomato;
+}
 
 .text__description {
   width: 450px;

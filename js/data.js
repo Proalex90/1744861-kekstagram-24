@@ -9,4 +9,13 @@ const numberComments = {
   max: 5,
 };
 
-export { NAMES, COMMENTS, numberComments };
+//Регулярное выражение
+const REGEX = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
+
+//Максимальное число Хэш-тегов
+const MAX_HASHTAGS = 5;
+
+//Максимальная длина комментария
+const MAX_LENGTH_DESCRIPTION = 140;
+
+export { NAMES, COMMENTS, numberComments, REGEX, MAX_HASHTAGS, MAX_LENGTH_DESCRIPTION };

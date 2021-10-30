@@ -35,7 +35,6 @@ const validityHashtag = () => {
 };
 
 const validityDescription = () => {
-  descriptionInput.stopPropagation;
   if (!checkingStringLength(descriptionInput.value, MAX_LENGTH_DESCRIPTION)) {
     descriptionInput.setCustomValidity(`Максимальная длина сообщения превышает ${MAX_LENGTH_DESCRIPTION} символов. Удалите лишние ${descriptionInput.value.length - MAX_LENGTH_DESCRIPTION} символа(ов).`);
   } else {

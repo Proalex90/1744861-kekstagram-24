@@ -1,7 +1,7 @@
 import { NAMES, COMMENTS } from './data.js';
 
 
-// Функция случайного числа из выбрранного диапозона
+// Функция случайного числа из выбрранного диапозона -
 const getRandomInt = function (from, to) {
   if (to > from) {
     from = Math.abs(Math.ceil(from));
@@ -15,13 +15,13 @@ const getRandomInt = function (from, to) {
   return Math.floor(Math.random() * (to - from + 1)) + from;
 };
 
-//Функция получения случайного элемента из массива
+//Функция получения случайного элемента из массива -
 const getRandomArrayElement = (elements) => elements[getRandomInt(0, elements.length - 1)];
 
 // Функция проверки длины строки
 const checkingStringLength = (string, maxStringLength) => string.length <= maxStringLength;
 
-//Функция случайного 1-2 комментариев
+//Функция случайного 1-2 комментариев -
 const getTextComments = () => {
   let text = '';
   for (let i = 1; i <= getRandomInt(1, 2); i++) {
@@ -30,7 +30,7 @@ const getTextComments = () => {
   return text;
 };
 
-//Функция генерации комментария
+//Функция генерации комментария -
 const getComments = (j) => {
   j++;
   return {
@@ -41,7 +41,7 @@ const getComments = (j) => {
   };
 };
 
-//Нажатие ESC
+//Нажатие ESC -
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 //Нажатие Enter

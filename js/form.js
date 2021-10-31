@@ -1,5 +1,5 @@
 import { isEscapeKey } from './utils.js';
-import { REGEX, MAX_HASHTAGS, MAX_LENGTH_DESCRIPTION } from './data.js';
+import { REGEX, MAX_HASHTAGS, MAX_LENGTH_DESCRIPTION } from './setup.js';
 import { checkingStringLength } from './utils.js';
 
 const uploadInput = document.querySelector('#upload-file');

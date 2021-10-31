@@ -1,12 +1,11 @@
 import { isEscapeKey } from './utils.js';
+import { uploadCommentsListener } from './uploader-comments.js';
 
 const fullscreenPanel = document.querySelector('.big-picture');
 const body = document.querySelector('body');
 const picturesSection = document.querySelector('.pictures');
 const fullscreenCloseButton = document.querySelector('.big-picture__cancel');
 
-const commentCount = document.querySelector('.social__comment-count');
-const commentsLoadButton = document.querySelector('.comments-loader');
 
 const closeFullscreenPanel = () => {
   fullscreenPanel.classList.add('hidden');
@@ -26,8 +25,6 @@ document.addEventListener('keydown', onKeyDownEsc);
 const openFullscreenPanel = () => {
   fullscreenPanel.classList.remove('hidden');
   body.classList.add('modal-open');
-  commentCount.classList.add('hidden');
-  commentsLoadButton.classList.add('hidden');
   fullscreenCloseButton.addEventListener('click', closeFullscreenPanel);
 };
 
@@ -40,12 +37,13 @@ const getFullscreenTemplate = (element) => {
   const socialComments = document.querySelector('.social__comments');
   socialComments.innerHTML = '';
   element.comments.forEach((comment) => {
-    const template = `<li class="social__comment">
+    const template = `<li class="social__comment hidden">
     <img class="social__picture" src=${comment.avatar} alt="${comment.name}" width="35" height="35">
     <p class="social__text">${comment.message}</p>
     </li>`;
     socialComments.insertAdjacentHTML('beforeend', template);
   });
+  uploadCommentsListener(socialComments);
   fullscreenPanel.querySelector('.social__caption').textContent = element.description;
 };
 

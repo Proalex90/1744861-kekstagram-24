@@ -1,5 +1,5 @@
 import { getRandomArrayElement } from './utils.js';
-import { NUMBER_COMMENTS } from './setup.js';
+import { NUMBER_COMMENTS } from './settings.js';
 
 // Массив имен
 const NAMES = ['Казимир', 'Карл', 'Карен', 'Клавдий', 'Кирилл', 'Клим', 'Ким', 'Клод', 'Клемент', 'Корнилий', 'Корней', 'Конрад', 'Конкордий', 'Константин', 'Кондрат', 'Ксаннф', 'Кузьма'];

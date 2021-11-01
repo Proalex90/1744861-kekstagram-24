@@ -1,6 +1,6 @@
 import { isEscapeKey, checkingStringLength } from './utils.js';
-import { REGEX, MAX_HASHTAGS, MAX_LENGTH_DESCRIPTION } from './setup.js';
-
+import { REGEX, MAX_HASHTAGS, MAX_LENGTH_DESCRIPTION } from './settings.js';
+import { changeImgSize } from './scale-photo.js';
 
 const uploadInput = document.querySelector('#upload-file');
 const editeUploadImg = document.querySelector('.img-upload__overlay');
@@ -64,6 +64,7 @@ const openEditForm = () => {
   closeButton.addEventListener('click', closeEditForm);
   hashtagInput.addEventListener('input', validityHashtag);
   descriptionInput.addEventListener('input', validityDescription);
+  changeImgSize();
 };
 
 hashtagInput.addEventListener('keydown', (evt) => {

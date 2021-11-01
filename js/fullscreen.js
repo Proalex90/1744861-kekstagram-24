@@ -8,6 +8,12 @@ const fullscreenCloseButton = document.querySelector('.big-picture__cancel');
 const commentCount = document.querySelector('.social__comment-count');
 const commentsLoadButton = document.querySelector('.comments-loader');
 
+const closeFullscreenPanel = () => {
+  fullscreenPanel.classList.add('hidden');
+  body.classList.remove('modal-open');
+  fullscreenCloseButton.removeEventListener('click', closeFullscreenPanel);
+};
+
 const onKeyDownEsc = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
@@ -15,13 +21,7 @@ const onKeyDownEsc = (evt) => {
   }
 };
 
-const closeFullscreenPanel = () => {
-  fullscreenPanel.classList.add('hidden');
-  body.classList.remove('modal-open');
-  fullscreenCloseButton.removeEventListener('click', closeFullscreenPanel);
-  document.removeEventListener('keydown', onKeyDownEsc);
-};
-
+document.addEventListener('keydown', onKeyDownEsc);
 
 const openFullscreenPanel = () => {
   fullscreenPanel.classList.remove('hidden');
@@ -29,7 +29,6 @@ const openFullscreenPanel = () => {
   commentCount.classList.add('hidden');
   commentsLoadButton.classList.add('hidden');
   fullscreenCloseButton.addEventListener('click', closeFullscreenPanel);
-  document.addEventListener('keydown', onKeyDownEsc);
 };
 
 const getFullscreenTemplate = (element) => {
@@ -54,9 +53,9 @@ const getFullscreenTemplate = (element) => {
 function getChoosenPhoto(array) {
   return function onPhotoClick(evt) {
     if (evt.target.closest('.picture')) {
-      const currentElement = evt.target.closest('.picture');
-      const currentObject = (currentElement.dataset.id) - 1;
-      getFullscreenTemplate(array[currentObject]);
+      const currentElement = evt.target.closest('.picture').dataset.id;
+      const currentObject = array.find((element) => element.id === parseInt(currentElement, 10)); //const currentObject = array.find((element) => String(element.id) === currentElement);
+      getFullscreenTemplate(currentObject);
     }
   };
 }

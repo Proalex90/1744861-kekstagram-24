@@ -52,7 +52,7 @@ function getChoosenPhoto(array) {
   return function onPhotoClick(evt) {
     if (evt.target.closest('.picture')) {
       const currentElement = evt.target.closest('.picture').dataset.id;
-      const currentObject = array.find((element) => element.id === parseInt(currentElement, 10)); //const currentObject = array.find((element) => String(element.id) === currentElement);
+      const currentObject = array.find((element) => element.id === parseInt(currentElement, 10));
       getFullscreenTemplate(currentObject);
     }
   };

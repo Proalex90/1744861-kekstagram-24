@@ -51,6 +51,8 @@ const closeEditForm = () => {
   uploadInput.value = '';
   hashtagInput.value = '';
   descriptionInput.value = '';
+  hashtagInput.setCustomValidity('');
+  descriptionInput.setCustomValidity('');
   hashtagInput.removeEventListener('input', validityHashtag);
   descriptionInput.removeEventListener('input', validityDescription);
 };

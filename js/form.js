@@ -1,5 +1,5 @@
 import { isEscapeKey } from './utils.js';
-import { REGEX, MAX_HASHTAGS, MAX_LENGTH_DESCRIPTION } from './data.js';
+import { REGEX, MAX_HASHTAGS, MAX_LENGTH_DESCRIPTION } from './setup.js';
 import { checkingStringLength } from './utils.js';
 
 const uploadInput = document.querySelector('#upload-file');
@@ -51,6 +51,8 @@ const closeEditForm = () => {
   uploadInput.value = '';
   hashtagInput.value = '';
   descriptionInput.value = '';
+  hashtagInput.setCustomValidity('');
+  descriptionInput.setCustomValidity('');
   hashtagInput.removeEventListener('input', validityHashtag);
   descriptionInput.removeEventListener('input', validityDescription);
 };

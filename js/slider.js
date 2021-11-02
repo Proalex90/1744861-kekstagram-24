@@ -13,7 +13,7 @@ const effectLevelValue = document.querySelector('.effect-level__value');
 
 let startEffect = 'none';
 
-const setClassToLoadImg = (className) => uploadImg.className = className; //прописываю нужный класс
+const setClassToLoadImg = (className) => uploadImg.className = className; //прописываем нужный класс
 
 //Начальные настройки слайдера
 noUiSlider.create(slider, {
@@ -29,7 +29,7 @@ noUiSlider.create(slider, {
 // событие перемещения ползунка насыщенеости в зависимости от выбранного фильтра
 slider.noUiSlider.on('update', (___, handle, values) => {
   const style = effectOptions[startEffect].style;
-  effectLevelValue.value = values[handle];
+  effectLevelValue.value = values[handle]; //Записываем силу эффекта в скрытое поле для отправки на сервер
 
   switch (startEffect) {
     case 'chrome':

@@ -1,4 +1,4 @@
-import { COMMENTS_COUNT_START, COMMENTS_COUNT_PLUS } from './setup.js';
+import { COMMENTS_COUNT_START, COMMENTS_COUNT_PLUS } from './settings.js';
 
 
 const uploadCommentsListener = (commentsList) => {

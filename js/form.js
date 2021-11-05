@@ -2,7 +2,7 @@ import { isEscapeKey, checkingStringLength } from './utils.js';
 import { REGEX, MAX_HASHTAGS, MAX_LENGTH_DESCRIPTION } from './settings.js';
 import { changeImgSize } from './scale-photo.js';
 import { setDefaultEffect } from './slider.js';
-import { showAlert, onSuccessMessage, onFailMessage, onLoadImg } from './utils.js';
+import { onSuccessMessage, onFailMessage } from './utils.js';
 import { sendData } from './api.js';
 
 const form = document.querySelector('.img-upload__form');
@@ -59,9 +59,18 @@ const closeEditForm = () => {
   descriptionInput.setCustomValidity('');
   hashtagInput.removeEventListener('input', validityHashtag);
   descriptionInput.removeEventListener('input', validityDescription);
-
 };
 
+const setUserFormSubmit = (onSuccess, onFail) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    sendData(
+      () => onSuccess(onSuccessMessage()),
+      () => onFail(onFailMessage()),
+      new FormData(evt.target),
+    );
+  }, { once: true });
+};
 
 const openEditForm = () => {
   //onLoadImg(); функционал пока не реализован полностью
@@ -94,16 +103,5 @@ document.addEventListener('keydown', onKeyDownEsc);
 
 const onUploadImg = () => uploadInput.addEventListener('change', openEditForm);
 
-
-const setUserFormSubmit = (onSuccess, onFail) => {
-  form.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    sendData(
-      () => onSuccess(onSuccessMessage()),
-      () => onFail(onFailMessage()),
-      new FormData(evt.target),
-    );
-  }, { once: true });
-};
 
 export { onUploadImg };

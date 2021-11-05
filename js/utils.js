@@ -34,17 +34,15 @@ const onSuccessMessage = () => {
 };
 
 
-function onClickCloseOutsideElement(block, elem) { // вызвать в момент показа окна, где elem - окно
+function onClickCloseOutsideElement(block, elem) {
   function outsideClickListener(event) {
-    if (!elem.contains(event.target)) {  // проверяем, что клик не по элементу и элемент виден
+    if (!elem.contains(event.target)) {
       block.remove();
       document.removeEventListener('click', outsideClickListener);
     }
   }
   document.addEventListener('click', outsideClickListener);
 }
-
-
 
 
 //Окно неудачной отправки формы
@@ -67,14 +65,13 @@ const onFailMessage = () => {
 };
 
 
-
-//Экран загрузки изображения
+/* //Экран загрузки изображения
 const onLoadImg = () => {
   const loadMessage = document.querySelector('#messages').content.querySelector('.img-upload__message');
   const body = document.body;
   body.append(loadMessage);
 
-}
+}; */
 
 
 //Окно предупреждения
@@ -102,4 +99,4 @@ const showAlert = (message) => {
 };
 
 
-export { checkingStringLength, isEscapeKey, isEnterKey, showAlert, onSuccessMessage, onFailMessage, onLoadImg };
+export { checkingStringLength, isEscapeKey, isEnterKey, showAlert, onSuccessMessage, onFailMessage };

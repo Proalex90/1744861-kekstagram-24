@@ -2,7 +2,10 @@ import { isEscapeKey, checkingStringLength } from './utils.js';
 import { REGEX, MAX_HASHTAGS, MAX_LENGTH_DESCRIPTION } from './settings.js';
 import { changeImgSize } from './scale-photo.js';
 import { setDefaultEffect } from './slider.js';
+import { showAlert, onSuccessMessage, onFailMessage, onLoadImg } from './utils.js';
+import { sendData } from './api.js';
 
+const form = document.querySelector('.img-upload__form');
 const uploadInput = document.querySelector('#upload-file');
 const editeUploadImg = document.querySelector('.img-upload__overlay');
 const body = document.body;
@@ -56,10 +59,12 @@ const closeEditForm = () => {
   descriptionInput.setCustomValidity('');
   hashtagInput.removeEventListener('input', validityHashtag);
   descriptionInput.removeEventListener('input', validityDescription);
+
 };
 
 
 const openEditForm = () => {
+  //onLoadImg(); функционал пока не реализован полностью
   editeUploadImg.classList.remove('hidden');
   body.classList.add('modal-open');
   closeButton.addEventListener('click', closeEditForm);
@@ -67,6 +72,7 @@ const openEditForm = () => {
   descriptionInput.addEventListener('input', validityDescription);
   changeImgSize();
   setDefaultEffect();
+  setUserFormSubmit(closeEditForm, closeEditForm);
 };
 
 hashtagInput.addEventListener('keydown', (evt) => {
@@ -87,5 +93,17 @@ const onKeyDownEsc = (evt) => {
 document.addEventListener('keydown', onKeyDownEsc);
 
 const onUploadImg = () => uploadInput.addEventListener('change', openEditForm);
+
+
+const setUserFormSubmit = (onSuccess, onFail) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    sendData(
+      () => onSuccess(onSuccessMessage()),
+      () => onFail(onFailMessage()),
+      new FormData(evt.target),
+    );
+  }, { once: true });
+};
 
 export { onUploadImg };

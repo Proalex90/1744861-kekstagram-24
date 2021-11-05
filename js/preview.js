@@ -1,5 +1,3 @@
-import { arrayObjects } from './main.js';
-
 const getPreviewPhoto = function (arrayObjects) {
   const templateFragment = document.querySelector('#picture').content;
   const template = templateFragment.querySelector('.picture');

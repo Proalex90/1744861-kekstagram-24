@@ -2,14 +2,14 @@
 import { getPreviewPhoto } from './preview.js';
 import { onPictureClick } from './fullscreen.js';
 import { onUploadImg } from './form.js';
-import { createDescription } from './mocks.js';
-import { createLoader } from './load.js';
-
-createLoader(getPreviewPhoto);
-const arrayObjects = Array.from({ length: 25 }, (item, i) => createDescription(i));
-getPreviewPhoto();
-onPictureClick(arrayObjects);
-onUploadImg();
+import { getData } from './api.js';
+import {showAlert} from './utils.js';
 
 
-export { arrayObjects };
+const start = getData((arrayObjects) => {
+  getPreviewPhoto(arrayObjects);
+  onPictureClick(arrayObjects);
+  onUploadImg();
+}, showAlert);
+start();
+

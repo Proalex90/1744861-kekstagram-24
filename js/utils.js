@@ -1,3 +1,4 @@
+import { uploadInput } from './form.js';
 // Функция проверки длины строки
 const checkingStringLength = (string, maxStringLength) => string.length <= maxStringLength;
 
@@ -33,7 +34,7 @@ const onSuccessMessage = () => {
   };
 };
 
-
+//Функция закрытия окна по клику вне элемента
 function onClickCloseOutsideElement(block, elem) {
   function outsideClickListener(event) {
     if (!elem.contains(event.target)) {
@@ -64,7 +65,16 @@ const onFailMessage = () => {
   };
 };
 
-
+//Окно загрузки
+const onLoadImg = () => {
+  const loadMessage = document.querySelector('#messages').content.querySelector('.img-upload__message');
+  uploadInput.addEventListener('change', () => {
+    body.append(loadMessage);
+    setTimeout(() => {
+      loadMessage.remove();
+    }, 1000);
+  });
+}
 //Окно предупреждения
 const ALERT_SHOW_TIME = 5000;
 
@@ -126,4 +136,4 @@ const debounce = (callback, timeoutDelay = 500) => {
   };
 };
 
-export { checkingStringLength, isEscapeKey, isEnterKey, showAlert, onSuccessMessage, onFailMessage, getRandomArray, debounce };
+export { checkingStringLength, isEscapeKey, isEnterKey, showAlert, onSuccessMessage, onFailMessage, getRandomArray, debounce, onLoadImg };

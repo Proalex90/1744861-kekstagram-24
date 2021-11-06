@@ -13,7 +13,7 @@ const targetIds = {
 
 const filtersForm = document.querySelector('.img-filters__form');
 const imgFilters = document.querySelector('.img-filters');
-const filterBtns = imgFilters.querySelectorAll('.img-filters__button');
+const filterButton = imgFilters.querySelectorAll('.img-filters__button');
 
 const showFilter = () => {
   // Массив картинок для загрузки
@@ -57,7 +57,7 @@ const changeFilter = (evt) => {
 
 
 const changeMarkerFilter = (evt) => {
-  filterBtns.forEach((btnIn) => btnIn.classList.remove(ACTIVE_FILTER_CLASS));
+  filterButton.forEach((btnIn) => btnIn.classList.remove(ACTIVE_FILTER_CLASS));
   evt.target.classList.add(ACTIVE_FILTER_CLASS);
 };
 

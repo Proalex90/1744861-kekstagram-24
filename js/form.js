@@ -2,8 +2,9 @@ import { isEscapeKey, checkingStringLength } from './utils.js';
 import { REGEX, MAX_HASHTAGS, MAX_LENGTH_DESCRIPTION } from './settings.js';
 import { changeImgSize } from './scale-photo.js';
 import { setDefaultEffect } from './slider.js';
-import { onSuccessMessage, onFailMessage } from './utils.js';
+import { onSuccessMessage, onFailMessage, onLoadImg } from './utils.js';
 import { sendData } from './api.js';
+import { showChosenImg } from './live-image.js';
 
 const form = document.querySelector('.img-upload__form');
 const uploadInput = document.querySelector('#upload-file');
@@ -101,6 +102,7 @@ const onKeyDownEsc = (evt) => {
 document.addEventListener('keydown', onKeyDownEsc);
 
 const onUploadImg = () => uploadInput.addEventListener('change', openEditForm);
+showChosenImg();
+onLoadImg();
 
-
-export { onUploadImg };
+export { onUploadImg, uploadInput };

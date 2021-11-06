@@ -65,15 +65,6 @@ const onFailMessage = () => {
 };
 
 
-/* //Экран загрузки изображения
-const onLoadImg = () => {
-  const loadMessage = document.querySelector('#messages').content.querySelector('.img-upload__message');
-  const body = document.body;
-  body.append(loadMessage);
-
-}; */
-
-
 //Окно предупреждения
 const ALERT_SHOW_TIME = 5000;
 
@@ -98,5 +89,41 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
+//Генератор случайного числа
+const getRandomInt = function (from, to) {
+  if (to > from) {
+    from = Math.abs(Math.ceil(from));
+    to = Math.abs(Math.floor(to));
+    return Math.floor(Math.random() * (to - from + 1)) + from;
+  }
+  //если первое число больше второго, числа меняются местами
+  const swap = Math.abs(Math.ceil(from));
+  from = Math.abs(Math.floor(to));
+  to = swap;
+  return Math.floor(Math.random() * (to - from + 1)) + from;
+};
 
-export { checkingStringLength, isEscapeKey, isEnterKey, showAlert, onSuccessMessage, onFailMessage };
+//Случайный массив фотографий
+const COUNT_RANDOM_PHOTO = 10;
+
+const getRandomArray = (array) => {
+  const numbersArr = [];
+  while (numbersArr.length < COUNT_RANDOM_PHOTO) {
+    const ranNum = getRandomInt(0, array.length - 1);
+    if (!numbersArr.length || numbersArr.every((num) => num !== ranNum)) {
+      numbersArr.push(ranNum);
+    }
+  }
+  return numbersArr.map((num) => array[num]);
+};
+
+//Таймер
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export { checkingStringLength, isEscapeKey, isEnterKey, showAlert, onSuccessMessage, onFailMessage, getRandomArray, debounce };

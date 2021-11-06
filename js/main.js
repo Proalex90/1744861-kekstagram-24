@@ -1,15 +1,9 @@
 
-import { getPreviewPhoto } from './preview.js';
-import { onPictureClick } from './fullscreen.js';
 import { onUploadImg } from './form.js';
-import { getData } from './api.js';
-import {showAlert} from './utils.js';
+import { getOptionalFilterData, filter } from './filter.js';
 
+filter();
+getOptionalFilterData();
+onUploadImg();
 
-const start = getData((arrayObjects) => {
-  getPreviewPhoto(arrayObjects);
-  onPictureClick(arrayObjects);
-  onUploadImg();
-}, showAlert);
-start();
 

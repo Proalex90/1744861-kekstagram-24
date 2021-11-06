@@ -1,25 +1,13 @@
-const getData = (onSuccess, onError) => () => {
-  fetch(
-    'https://24.javascript.pages.academy/kekstagram/data',
-    {
-      method: 'GET',
-      credentials: 'same-origin',
-    },
-  )
+const getData = () => (
+  fetch('https://24.javascript.pages.academy/kekstagram/data')
     .then((response) => {
       if (response.ok) {
         return response.json();
+      } else {
+        throw new Error(`${response.status} ${response.statusText}`);
       }
-
-      throw new Error(`${response.status} ${response.statusText}`);
     })
-    .then((data) => {
-      onSuccess(data);
-    })
-    .catch((err) => {
-      onError(err);
-    });
-};
+);
 
 const sendData = (onSuccess, onFail, body) => {
   fetch(

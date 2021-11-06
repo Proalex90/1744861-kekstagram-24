@@ -1,4 +1,9 @@
-import { STEP, DEFAULT_SCALE, sizesForChange } from './settings.js';
+const STEP = 25;
+const DEFAULT_SCALE = 100;
+const sizesForChange = {
+  min: 25,
+  max: 76,
+};
 
 let stateScale = 100;
 

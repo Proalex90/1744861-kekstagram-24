@@ -73,7 +73,6 @@ const setUserFormSubmit = (onSuccess, onFail) => {
 };
 
 const openEditForm = () => {
-  //onLoadImg(); функционал пока не реализован полностью
   editeUploadImg.classList.remove('hidden');
   body.classList.add('modal-open');
   closeButton.addEventListener('click', closeEditForm);

@@ -1,8 +1,9 @@
+import { onPictureClick } from './fullscreen.js';
 const getPreviewPhoto = function (arrayObjects) {
   const templateFragment = document.querySelector('#picture').content;
   const template = templateFragment.querySelector('.picture');
   const fragment = document.createDocumentFragment();
-  const BLOCK_PICTURE = document.querySelector('.pictures');
+  const blockPictures = document.querySelector('.pictures');
 
   arrayObjects.forEach((element) => {
     const cloneElement = template.cloneNode(true);
@@ -13,7 +14,11 @@ const getPreviewPhoto = function (arrayObjects) {
     fragment.appendChild(cloneElement);
 
   });
-  BLOCK_PICTURE.appendChild(fragment);
+  blockPictures.querySelectorAll('.picture').forEach((element) => {
+    element.remove();
+  });
+  blockPictures.appendChild(fragment);
+  onPictureClick(arrayObjects);
 };
 
 

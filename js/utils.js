@@ -74,7 +74,8 @@ const onLoadImg = () => {
       loadMessage.remove();
     }, 1000);
   });
-}
+};
+
 //Окно предупреждения
 const ALERT_SHOW_TIME = 5000;
 

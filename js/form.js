@@ -2,7 +2,11 @@ import { isEscapeKey, checkingStringLength } from './utils.js';
 import { REGEX, MAX_HASHTAGS, MAX_LENGTH_DESCRIPTION } from './settings.js';
 import { changeImgSize } from './scale-photo.js';
 import { setDefaultEffect } from './slider.js';
+import { onSuccessMessage, onFailMessage, onLoadImg } from './utils.js';
+import { sendData } from './api.js';
+import { showChosenImg } from './live-image.js';
 
+const form = document.querySelector('.img-upload__form');
 const uploadInput = document.querySelector('#upload-file');
 const editeUploadImg = document.querySelector('.img-upload__overlay');
 const body = document.body;
@@ -58,6 +62,16 @@ const closeEditForm = () => {
   descriptionInput.removeEventListener('input', validityDescription);
 };
 
+const setUserFormSubmit = (onSuccess, onFail) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    sendData(
+      () => onSuccess(onSuccessMessage()),
+      () => onFail(onFailMessage()),
+      new FormData(evt.target),
+    );
+  }, { once: true });
+};
 
 const openEditForm = () => {
   editeUploadImg.classList.remove('hidden');
@@ -67,6 +81,7 @@ const openEditForm = () => {
   descriptionInput.addEventListener('input', validityDescription);
   changeImgSize();
   setDefaultEffect();
+  setUserFormSubmit(closeEditForm, closeEditForm);
 };
 
 hashtagInput.addEventListener('keydown', (evt) => {
@@ -87,5 +102,7 @@ const onKeyDownEsc = (evt) => {
 document.addEventListener('keydown', onKeyDownEsc);
 
 const onUploadImg = () => uploadInput.addEventListener('change', openEditForm);
+showChosenImg();
+onLoadImg();
 
-export { onUploadImg };
+export { onUploadImg, uploadInput };

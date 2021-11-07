@@ -10,6 +10,7 @@ const sliderContainer = document.querySelector('.img-upload__effect-level');
 const slider = sliderContainer.querySelector('.effect-level__slider');
 const effectsContainer = document.querySelector('.img-upload__effects');
 const effectLevelValue = document.querySelector('.effect-level__value');
+const effectsPreview = document.querySelectorAll('.effects__preview');
 
 let startEffect = 'none';
 
@@ -76,4 +77,4 @@ const changeEffect = (target) => {
 
 effectsContainer.addEventListener('change', (evt) => changeEffect(evt.target));
 
-export { setDefaultEffect };
+export { setDefaultEffect, uploadImg, effectsPreview };

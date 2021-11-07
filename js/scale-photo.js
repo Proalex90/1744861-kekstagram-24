@@ -1,4 +1,9 @@
-import { STEP, DEFAULT_SCALE, sizesForChange } from './settings.js';
+const STEP = 25;
+const DEFAULT_SCALE = 100;
+const sizesForChange = {
+  min: 25,
+  max: 76,
+};
 
 let stateScale = 100;
 
@@ -24,19 +29,20 @@ const changeScaleValue = (sign) => {
 
 const changeImgSize = () => {
   setDefaultImgScale();
-  scaleMinus.addEventListener('click', () => {
+
+  scaleMinus.onclick = () => {
     if (stateScale > sizesForChange.min) {
       changeScaleValue(-1);
       setScaleImg(stateScale);
     }
-  });
+  };
 
-  scalePlus.addEventListener('click', () => {
+  scalePlus.onclick = () => {
     if (stateScale <= sizesForChange.max) {
       changeScaleValue(1);
       setScaleImg(stateScale);
     }
-  });
+  };
 };
 
 export { changeImgSize };

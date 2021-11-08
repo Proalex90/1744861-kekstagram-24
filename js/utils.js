@@ -1,4 +1,10 @@
 import { uploadInput } from './form.js';
+
+const LOADING_TIME = 1000;
+const TIMEOUT_DELAY = 500;
+const COUNT_RANDOM_PHOTO = 10;
+const ALERT_SHOW_TIME = 5000;
+
 // Функция проверки длины строки
 const checkingStringLength = (string, maxStringLength) => string.length <= maxStringLength;
 
@@ -72,13 +78,11 @@ const onLoadImg = () => {
     body.append(loadMessage);
     setTimeout(() => {
       loadMessage.remove();
-    }, 1000);
+    }, LOADING_TIME);
   });
 };
 
 //Окно предупреждения
-const ALERT_SHOW_TIME = 5000;
-
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = 100;
@@ -115,8 +119,6 @@ const getRandomInt = function (from, to) {
 };
 
 //Случайный массив фотографий
-const COUNT_RANDOM_PHOTO = 10;
-
 const getRandomArray = (array) => {
   const numbersArr = [];
   while (numbersArr.length < COUNT_RANDOM_PHOTO) {
@@ -129,7 +131,7 @@ const getRandomArray = (array) => {
 };
 
 //Таймер
-const debounce = (callback, timeoutDelay = 500) => {
+const debounce = (callback, timeoutDelay = TIMEOUT_DELAY) => {
   let timeoutId;
   return (...rest) => {
     clearTimeout(timeoutId);

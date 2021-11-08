@@ -46,12 +46,12 @@ const getOptionalFilterData = (selectedFilter = defaultOption) => {
 
 const changeFilter = (evt) => {
   switch (evt.target.id) {
-    case targetIds.default:
-      getOptionalFilterData(); break;
     case targetIds.random:
       getOptionalFilterData(getRandomArray); break;
     case targetIds.discussed:
       getOptionalFilterData(sortByComment); break;
+    default:
+      getOptionalFilterData(); break;
   }
 };
 
@@ -61,11 +61,11 @@ const changeMarkerFilter = (evt) => {
   evt.target.classList.add(ACTIVE_FILTER_CLASS);
 };
 
-const filter = () => {
+const addfilter = () => {
   filtersForm.addEventListener('click', debounce((evt) => {
     changeFilter(evt);
     changeMarkerFilter(evt);
   }));
 };
 
-export { filter, changeFilter, showFilter, getOptionalFilterData };
+export { addfilter, changeFilter, showFilter, getOptionalFilterData };

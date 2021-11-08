@@ -11,9 +11,8 @@ const MAX_LENGTH_DESCRIPTION = 140;
 const COMMENTS_COUNT_PLUS = 5;
 const COMMENTS_COUNT_START = 5;
 
-
 // Настройки для слайдера в зависимости от эффекта
-const effectOptions = {
+const EffectOptions = {
   'none': { style: 'none', min: 0, max: 1, step: 1 },
   'chrome': { style: 'grayscale', min: 0, max: 1, step: 0.1 },
   'sepia': { style: 'sepia', min: 0, max: 1, step: 0.1 },
@@ -23,4 +22,4 @@ const effectOptions = {
 };
 
 
-export { REGEX, MAX_HASHTAGS, MAX_LENGTH_DESCRIPTION, COMMENTS_COUNT_PLUS, COMMENTS_COUNT_START, effectOptions };
+export { REGEX, MAX_HASHTAGS, MAX_LENGTH_DESCRIPTION, COMMENTS_COUNT_PLUS, COMMENTS_COUNT_START, EffectOptions };

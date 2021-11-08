@@ -1,4 +1,4 @@
-import { effectOptions } from './settings.js';
+import { EffectOptions } from './settings.js';
 
 const tamplateEffect = 'effects__preview--';
 const defaultStyleImg = 'effects__preview--none';
@@ -29,7 +29,7 @@ noUiSlider.create(slider, {
 
 // событие перемещения ползунка насыщенеости в зависимости от выбранного фильтра
 slider.noUiSlider.on('update', (___, handle, values) => {
-  const style = effectOptions[startEffect].style;
+  const style = EffectOptions[startEffect].style;
   effectLevelValue.value = values[handle]; //Записываем силу эффекта в скрытое поле для отправки на сервер
 
   switch (startEffect) {
@@ -63,7 +63,7 @@ const changeEffect = (target) => {
   const effect = target.value; // Получаю эффект из выбранного фильтра
   setClassToLoadImg(tamplateEffect + effect);
   startEffect = effect;
-  const { min, max, step } = effectOptions[effect]; //Обновляю настройки слайдера в зависимости от выбранного эффекта
+  const { min, max, step } = EffectOptions[effect]; //Обновляю настройки слайдера в зависимости от выбранного эффекта
   slider.noUiSlider.updateOptions({
     range: {
       min,

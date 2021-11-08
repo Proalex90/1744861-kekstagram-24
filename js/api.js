@@ -1,5 +1,10 @@
+const fetchList = {
+  get: 'https://24.javascript.pages.academy/kekstagram/data',
+  post: 'https://24.javascript.pages.academy/kekstagram',
+};
+
 const getData = () => (
-  fetch('https://24.javascript.pages.academy/kekstagram/data')
+  fetch(fetchList.get)
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -10,8 +15,7 @@ const getData = () => (
 );
 
 const sendData = (onSuccess, onFail, body) => {
-  fetch(
-    'https://24.javascript.pages.academy/kekstagram',
+  fetch(fetchList.post,
     {
       method: 'POST',
       body,

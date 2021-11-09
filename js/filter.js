@@ -61,11 +61,11 @@ const changeMarkerFilter = (evt) => {
   evt.target.classList.add(ACTIVE_FILTER_CLASS);
 };
 
-const addfilter = () => {
+const addFilter = () => {
   filtersForm.addEventListener('click', debounce((evt) => {
     changeFilter(evt);
     changeMarkerFilter(evt);
   }));
 };
 
-export { addfilter, changeFilter, showFilter, getOptionalFilterData };
+export { addFilter, changeFilter, showFilter, getOptionalFilterData };

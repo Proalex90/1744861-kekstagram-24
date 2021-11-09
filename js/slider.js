@@ -51,7 +51,7 @@ slider.noUiSlider.on('update', (___, handle, values) => {
 const setDefaultEffect = () => {
   setClassToLoadImg(defaultStyleImg);
   const inputs = effectsContainer.querySelectorAll('input');
-  inputs.forEach((input) => input.checked = input.id === defaultEffectId);
+  inputs.forEach((input) => {input.checked = input.id === defaultEffectId;});
   uploadImg.style.filter = '';
   effectLevelValue.value = '';
   sliderContainer.style.display = 'none';

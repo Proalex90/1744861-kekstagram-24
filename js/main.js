@@ -1,8 +1,8 @@
 
 import { onUploadImg } from './form.js';
-import { getOptionalFilterData, addfilter } from './filter.js';
+import { getOptionalFilterData, addFilter } from './filter.js';
 
-addfilter();
+addFilter();
 getOptionalFilterData();
 onUploadImg();
 

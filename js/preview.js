@@ -1,5 +1,5 @@
 import { onPictureClick } from './fullscreen.js';
-const getPreviewPhoto = function (arrayObjects) {
+const getPreviewPhoto = (arrayObjects) => {
   const templateFragment = document.querySelector('#picture').content;
   const template = templateFragment.querySelector('.picture');
   const fragment = document.createDocumentFragment();

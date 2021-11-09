@@ -1,8 +1,7 @@
-import { isEscapeKey, checkingStringLength } from './utils.js';
 import { REGEX, MAX_HASHTAGS, MAX_LENGTH_DESCRIPTION } from './settings.js';
 import { changeImgSize } from './scale-photo.js';
 import { setDefaultEffect } from './slider.js';
-import { onSuccessMessage, onFailMessage, onLoadImg } from './utils.js';
+import { onSuccessMessage, onFailMessage, checkingStringLength, onLoadImg, onKeyDownEsc } from './utils.js';
 import { sendData } from './api.js';
 import { showChosenImg } from './live-image.js';
 
@@ -60,6 +59,8 @@ const closeEditForm = () => {
   descriptionInput.setCustomValidity('');
   hashtagInput.removeEventListener('input', validityHashtag);
   descriptionInput.removeEventListener('input', validityDescription);
+  document.removeEventListener('keydown', onKeyDownEsc);
+
 };
 
 const setUserFormSubmit = (onSuccess, onFail) => {
@@ -82,6 +83,7 @@ const openEditForm = () => {
   changeImgSize();
   setDefaultEffect();
   setUserFormSubmit(closeEditForm, closeEditForm);
+  document.addEventListener('keydown', onKeyDownEsc);
 };
 
 hashtagInput.addEventListener('keydown', (evt) => {
@@ -91,18 +93,10 @@ hashtagInput.addEventListener('keydown', (evt) => {
 descriptionInput.addEventListener('keydown', (evt) => {
   evt.stopPropagation();
 });
-const onKeyDownEsc = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeEditForm();
-  }
-};
 
-
-document.addEventListener('keydown', onKeyDownEsc);
 
 const onUploadImg = () => uploadInput.addEventListener('change', openEditForm);
 showChosenImg();
 onLoadImg();
 
-export { onUploadImg, uploadInput };
+export { onUploadImg, uploadInput, closeEditForm };

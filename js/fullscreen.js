@@ -1,4 +1,4 @@
-import { isEscapeKey } from './utils.js';
+import {onKeyDownEscInFullscreenModule } from './utils.js';
 import { uploadCommentsListener } from './uploader-comments.js';
 
 const fullscreenPanel = document.querySelector('.big-picture');
@@ -11,18 +11,12 @@ const closeFullscreenPanel = () => {
   fullscreenPanel.classList.add('hidden');
   body.classList.remove('modal-open');
   fullscreenCloseButton.removeEventListener('click', closeFullscreenPanel);
+  document.removeEventListener('keydown', onKeyDownEscInFullscreenModule);
 };
 
-const onKeyDownEsc = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeFullscreenPanel();
-  }
-};
-
-document.addEventListener('keydown', onKeyDownEsc);
 
 const openFullscreenPanel = () => {
+  document.addEventListener('keydown', onKeyDownEscInFullscreenModule);
   fullscreenPanel.classList.remove('hidden');
   body.classList.add('modal-open');
   fullscreenCloseButton.addEventListener('click', closeFullscreenPanel);
@@ -48,16 +42,14 @@ const getFullscreenTemplate = (element) => {
 };
 
 
-function getChoosenPhoto(array) {
-  return function onPhotoClick(evt) {
-    if (evt.target.closest('.picture')) {
-      const currentElement = evt.target.closest('.picture').dataset.id;
-      const currentObject = array.find((element) => element.id === parseInt(currentElement, 10));
-      getFullscreenTemplate(currentObject);
-    }
-  };
-}
+const getChoosenPhoto = (array) => (evt) => {
+  if (evt.target.closest('.picture')) {
+    const currentElement = evt.target.closest('.picture').dataset.id;
+    const currentObject = array.find((element) => element.id === parseInt(currentElement, 10));
+    getFullscreenTemplate(currentObject);
+  }
+};
 
 const onPictureClick = (array) => picturesSection.addEventListener('click', getChoosenPhoto(array));
 
-export { onPictureClick };
+export { onPictureClick, closeFullscreenPanel};

@@ -1,4 +1,5 @@
-import { uploadInput } from './form.js';
+import { uploadInput, closeEditForm } from './form.js';
+import { closeFullscreenPanel } from './fullscreen.js';
 
 const LOADING_TIME = 1000;
 const TIMEOUT_DELAY = 500;
@@ -15,11 +16,35 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 //Нажатие Enter
 const isEnterKey = (evt) => evt.key === 'Enter';
 
+const onKeyDownEsc = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeEditForm();
+  }
+};
+
+const onKeyDownEscInFullscreenModule = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeFullscreenPanel();
+  }
+};
+
 //Окно успешной отправки
 const body = document.body;
 const successMessage = document.querySelector('#success').content.querySelector('.success');
 const errorMessage = document.querySelector('#error').content.querySelector('.error');
 
+//Функция закрытия окна по клику вне элемента
+const onClickCloseOutsideElement = (block, elem) => {
+  const outsideClickListener = (event) => {
+    if (!elem.contains(event.target)) {
+      block.remove();
+      document.removeEventListener('click', outsideClickListener);
+    }
+  };
+  document.addEventListener('click', outsideClickListener);
+};
 
 const onSuccessMessage = () => {
   const successButton = successMessage.querySelector('.success__button');
@@ -39,18 +64,6 @@ const onSuccessMessage = () => {
     }
   };
 };
-
-//Функция закрытия окна по клику вне элемента
-function onClickCloseOutsideElement(block, elem) {
-  function outsideClickListener(event) {
-    if (!elem.contains(event.target)) {
-      block.remove();
-      document.removeEventListener('click', outsideClickListener);
-    }
-  }
-  document.addEventListener('click', outsideClickListener);
-}
-
 
 //Окно неудачной отправки формы
 const onFailMessage = () => {
@@ -105,7 +118,7 @@ const showAlert = (message) => {
 };
 
 //Генератор случайного числа
-const getRandomInt = function (from, to) {
+const getRandomInt = (from, to) => {
   if (to > from) {
     from = Math.abs(Math.ceil(from));
     to = Math.abs(Math.floor(to));
@@ -120,14 +133,14 @@ const getRandomInt = function (from, to) {
 
 //Случайный массив фотографий
 const getRandomArray = (array) => {
-  const numbersArr = [];
-  while (numbersArr.length < COUNT_RANDOM_PHOTO) {
+  const numbers = [];
+  while (numbers.length < COUNT_RANDOM_PHOTO) {
     const ranNum = getRandomInt(0, array.length - 1);
-    if (!numbersArr.length || numbersArr.every((num) => num !== ranNum)) {
-      numbersArr.push(ranNum);
+    if (!numbers.length || numbers.every((num) => num !== ranNum)) {
+      numbers.push(ranNum);
     }
   }
-  return numbersArr.map((num) => array[num]);
+  return numbers.map((num) => array[num]);
 };
 
 //Таймер
@@ -139,4 +152,4 @@ const debounce = (callback, timeoutDelay = TIMEOUT_DELAY) => {
   };
 };
 
-export { checkingStringLength, isEscapeKey, isEnterKey, showAlert, onSuccessMessage, onFailMessage, getRandomArray, debounce, onLoadImg };
+export { checkingStringLength, onKeyDownEsc, onKeyDownEscInFullscreenModule, isEscapeKey, isEnterKey, showAlert, onSuccessMessage, onFailMessage, getRandomArray, debounce, onLoadImg };
